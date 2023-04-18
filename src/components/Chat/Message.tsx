@@ -1,6 +1,6 @@
 import React from "react";
 
-const Message = () => {
+const Message = ({ message }: any) => {
   return (
     <div className="px-3 py-5  flex flex-row">
       <div className="rounded-full">
@@ -10,12 +10,7 @@ const Message = () => {
       </div>
       <div className="ml-3 text-sm break-all	 bg-white bg-opacity-10 p-3 rounded-lg text-white">
         <span className="mr-2 font-bold text-yellow-400">Nickname:</span>
-        <span>
-          Lorem ipsum ipsum ipsum ipsumipsum ipsumipsum ipsumipsum ipsumipsum
-          ipsumipsum ipsumipsum ipsumipsum ipsumipsum ipsumipsum ipsumipsum
-          ipsumipsum ipsumipsum ipsumipsum ipsumipsum ipsumipsum ipsumipsum
-          ipsumipsum ipsumipsum ipsum ipsum ipsum ipsum ipsum
-        </span>
+        <span>{message}</span>
       </div>
     </div>
   );

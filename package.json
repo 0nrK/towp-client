@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.14",
     "@types/node": "18.15.11",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
@@ -18,10 +19,16 @@
     "next": "13.3.0",
     "next-auth": "^4.22.0",
     "postcss": "8.4.21",
+    "pusher": "^5.1.2",
+    "pusher-js": "^8.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-youtube": "^10.1.0",
+    "redis": "^4.6.5",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
+    "socketio": "^1.0.0",
     "tailwindcss": "3.3.1",
     "typescript": "^5.0.4"
   }

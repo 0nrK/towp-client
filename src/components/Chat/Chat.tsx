@@ -1,12 +1,35 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect, useRef } from "react";
 import Message from "./Message";
 import Input from "./Input";
+import { socket } from "../../utils/socket";
 
 const Chat = () => {
+  const [messages, setMessages] = useState<string[]>(["asdasdsdfp"]);
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    socket.on("GET_MESSAGES", (data: any) => {
+      setMessages(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
-    <div className="w-96 relative rounded-lg   overflow-y-auto h-full bg-slate-800">
-      <Message />
-      <Input />
+    <div className="w-96 relative rounded-lg  overflow-y-hidden  h-96  bg-slate-800">
+      <div ref={chatRef} className=" space-y-1 h-5/6  overflow-y-scroll scroll-smooth">
+        {messages?.map((message, index) => {
+          return <Message key={index} message={message} />;
+        })}
+      </div>
+      <div className="h-full">
+        <Input />
+      </div>
     </div>
   );
 };

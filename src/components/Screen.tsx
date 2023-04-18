@@ -1,7 +1,7 @@
 "use client";
 
 import getData from "../utils/fetcher";
-import React, { useState, Suspense } from "react";
+import React, { useState } from "react";
 import YouTube from "react-youtube";
 
 const Screen = () => {
@@ -12,14 +12,12 @@ const Screen = () => {
     setVideoID(data.videoId);
   }
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <div className="w-full">
         <div className="">
           <YouTube
             className="ytplayer"
             opts={{
-              width: "440px",
-              height: "440px",
+              width: "384px ",
+              height: "384px ",
               borderRadius: "10px",
               playerVars: {
                 autoplay: 1,
@@ -31,8 +29,6 @@ const Screen = () => {
             videoId={videoID}
           />
         </div>
-      </div>
-    </Suspense>
   );
 };
 
