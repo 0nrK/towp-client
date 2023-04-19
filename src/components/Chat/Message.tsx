@@ -1,8 +1,9 @@
 import React from "react";
 
 const Message = ({ message }: any) => {
+
   return (
-    <div className="px-3 py-5  flex flex-row">
+    <div className="px-3 py-2  flex flex-row">
       <div className="rounded-full">
         <div className="w-8 h-8  bg-yellow-500 text-center my-auto rounded-md">
           {" "}
