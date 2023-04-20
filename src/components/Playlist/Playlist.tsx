@@ -29,6 +29,9 @@ const Playlist = () => {
       setPlayList(data);
     });
   }, []);
+  useEffect(() => {
+    setInputValue('')
+  }, [isModalOpen]);
   return (
     <div className="bg-slate-800 scrollbar rounded-lg w-64 h-96  overflow-y-scroll">
       <div>
@@ -55,12 +58,14 @@ const Playlist = () => {
             <div>
               <div className="z-50 absolute left-0 right-0 top-0 bottom-0 mx-auto my-auto w-96 rounded-lg h-auto max-h-80 bg-yellow-400">
                 <div
-                  onClick={() => setIsModalOpen(false)}
+                  onClick={() => {
+                    setIsModalOpen(false);
+                  }}
                   className="font-bold text-gray-600 text-xl flex justify-end cursor-pointer mr-3"
                 >
                   x
                 </div>
-                <div className="flex flex-col  space-y-3 w-5/6 mx-auto">
+                <div className="flex flex-col  space-y-3 w-5/6 h-96 mx-auto">
                   {videoId && (
                     <Image
                       alt="thumbnail"
