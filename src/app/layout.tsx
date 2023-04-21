@@ -1,4 +1,5 @@
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +12,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-        <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   );
 }

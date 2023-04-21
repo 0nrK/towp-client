@@ -3,14 +3,19 @@ import { useState, useEffect } from "react";
 import PlaylistItem from "./PlaylistItem";
 import { socket } from "../../utils/socket";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 const Playlist = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [playList, setPlayList] = useState<string[]>();
+  const [playList, setPlayList] = useState<any[]>();
   const [inputValue, setInputValue] = useState<string>("");
   const [videoId, setVideoId] = useState<any>("");
   function onClick() {
     socket.emit("ADD_TO_PLAYLIST", inputValue);
+    toast.success("Video added to playlist", {
+      position: toast.POSITION.BOTTOM_LEFT,
+      theme: "dark",
+    });
     setInputValue("");
     setIsModalOpen(false);
   }
@@ -30,8 +35,9 @@ const Playlist = () => {
     });
   }, []);
   useEffect(() => {
-    setInputValue('')
+    setInputValue("");
   }, [isModalOpen]);
+  console.log(playList);
   return (
     <div className="bg-slate-800 scrollbar rounded-lg w-64 h-96  overflow-y-scroll">
       <div>
@@ -47,7 +53,12 @@ const Playlist = () => {
           </div>
         </div>{" "}
         {playList?.map((item, index) => (
-          <PlaylistItem key={index} index={index} title={item} />
+          <PlaylistItem
+            key={index}
+            index={index}
+            videoId={item.videoId}
+            title={item.title}
+          />
         ))}
         {isModalOpen && (
           <>
@@ -56,26 +67,28 @@ const Playlist = () => {
               className="bg-black left-0  top-0 absolute w-screen h-screen opacity-90 z-40"
             ></div>
             <div>
-              <div className="z-50 absolute left-0 right-0 top-0 bottom-0 mx-auto my-auto w-96 rounded-lg h-auto max-h-80 bg-yellow-400">
+              <div className="z-50 absolute left-0 right-0 top-0 bottom-0 mx-auto my-auto w-96 rounded-lg h-auto max-h-80 bg-gray-700">
                 <div
                   onClick={() => {
                     setIsModalOpen(false);
                   }}
-                  className="font-bold text-gray-600 text-xl flex justify-end cursor-pointer mr-3"
+                  className="font-bold text-white text-xl flex justify-end cursor-pointer mr-3"
                 >
                   x
                 </div>
                 <div className="flex flex-col  space-y-3 w-5/6 h-96 mx-auto">
-                  {videoId && (
-                    <Image
-                      alt="thumbnail"
-                      className="mx-auto rounded-md"
-                      width={200}
-                      height={200}
-                      src={`https://img.youtube.com/vi/${videoId}/0.jpg`}
-                    />
-                  )}
-                  <label className="font-bold">
+                  <div className="min-w-48">
+                    {videoId && (
+                      <Image
+                        alt="thumbnail"
+                        className="mx-auto rounded-md"
+                        width={200}
+                        height={200}
+                        src={`https://img.youtube.com/vi/${videoId}/0.jpg`}
+                      />
+                    )}
+                  </div>
+                  <label className="text-white font-bold">
                     Enter a valid youtube link:
                   </label>
                   <input

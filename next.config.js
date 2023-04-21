@@ -4,8 +4,8 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['img.youtube.com'],
+    domains: ["img.youtube.com", "img.ytimg.com" ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
