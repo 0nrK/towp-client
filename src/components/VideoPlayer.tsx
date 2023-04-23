@@ -1,9 +1,7 @@
 "use client";
-
 import { socket } from "@/utils/socket";
 import React, { useEffect, useState } from "react";
 import YouTube from "react-youtube";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const VideoPlayer = () => {

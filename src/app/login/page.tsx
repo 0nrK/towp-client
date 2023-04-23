@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isUserLoggedIn, loginRequest } from "../../utils/login";
