@@ -1,15 +1,25 @@
 "use client";
 import { socket } from "@/utils/socket";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
 
 const Input = () => {
   const [message, setMessage] = useState<string>("");
+  const [token, setToken] = useState<string>("");
   function onClick() {
     if (message.trim() === "") return;
-    socket.emit("SEND_MESSAGE", message);
+    socket.emit("SEND_MESSAGE", {
+      message: message,
+      token: token,
+    });
     setMessage("");
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setToken(token!)
+    console.log(token);
+  }, []);
   return (
     <div className=" w-full">
       <div className="flex flex-row">
