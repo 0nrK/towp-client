@@ -1,36 +1,26 @@
 "use client";
 
 import { socket } from "@/utils/socket";
-import getData from "../utils/fetcher";
 import React, { useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Screen = () => {
+const VideoPlayer = () => {
   const [videoID, setVideoID] = useState<string>("");
-
   function onVideoEnds() {
     socket.emit("VIDEO_END");
     socket.on("CURRENT_VIDEO", (data: any) => {
-      if (data.videoId) {
+      if (data) {
         setVideoID(data.videoId);
-      } else {
-        toast.warning("Something went wrong while fetching video!", {
-          position: toast.POSITION.BOTTOM_LEFT,
-        });
       }
     });
   }
 
   useEffect(() => {
     socket.on("CURRENT_VIDEO", (data: any) => {
-      if (data.videoId) {
-        setVideoID(data.videoId);
-      } else {
-        toast.warning("Something went wrong while fetching current video!", {
-          position: toast.POSITION.BOTTOM_LEFT,
-        });
+      if (data) {
+        setVideoID(data?.videoId);
       }
     });
   }, []);
@@ -43,7 +33,6 @@ const Screen = () => {
     );
   return (
     <div className="">
-      <ToastContainer />
       <YouTube
         className="ytplayer"
         opts={{
@@ -52,16 +41,16 @@ const Screen = () => {
           borderRadius: "10px",
           playerVars: {
             autoplay: 1,
-            controls: 0,
+            controls: 1,
             disablekb: 1,
           },
         }}
         onEnd={onVideoEnds}
-        onError={(err) => console.log(err)}
+        onError={(err) => console.log("Error:", err)}
         videoId={videoID}
       />
     </div>
   );
 };
 
-export default Screen;
+export default VideoPlayer;

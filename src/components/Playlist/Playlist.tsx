@@ -15,6 +15,9 @@ const Playlist = () => {
     toast.success("Video added to playlist", {
       position: toast.POSITION.BOTTOM_LEFT,
       theme: "dark",
+      autoClose: 1000,
+      pauseOnFocusLoss: false,
+      hideProgressBar: false,
     });
     setInputValue("");
     setIsModalOpen(false);
@@ -37,7 +40,6 @@ const Playlist = () => {
   useEffect(() => {
     setInputValue("");
   }, [isModalOpen]);
-  console.log(playList);
   return (
     <div className="bg-slate-800 scrollbar rounded-lg w-64 h-96  overflow-y-scroll">
       <div>
@@ -77,8 +79,17 @@ const Playlist = () => {
                   x
                 </div>
                 <div className="flex flex-col  space-y-3 w-5/6 h-96 mx-auto">
-                  <div className="min-w-48">
-                    {videoId && (
+                  <label className="text-white font-bold">
+                    Enter a valid youtube link:
+                  </label>
+                  <input
+                    onChange={(event) => setInputValue(event.target.value)}
+                    value={inputValue}
+                    className="rounded-md cursor-pointer p-1 outline-none"
+                    type="text"
+                  />
+                  {videoId && (
+                    <div className="min-w-48">
                       <Image
                         alt="thumbnail"
                         className="mx-auto rounded-md"
@@ -86,20 +97,11 @@ const Playlist = () => {
                         height={200}
                         src={`https://img.youtube.com/vi/${videoId}/0.jpg`}
                       />
-                    )}
-                  </div>
-                  <label className="text-white font-bold">
-                    Enter a valid youtube link:
-                  </label>
-                  <input
-                    onChange={(event) => setInputValue(event.target.value)}
-                    value={inputValue}
-                    className="rounded-md p-1 outline-none"
-                    type="text"
-                  />
+                    </div>
+                  )}
                   <button
                     onClick={onClick}
-                    className="p-3 bg-green-500 rounded-md text-white ml-auto"
+                    className="p-3 cursor-pointer bg-green-500 rounded-md text-white ml-auto"
                   >
                     SEND
                   </button>
