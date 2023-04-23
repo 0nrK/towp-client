@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 function Navbar(): JSX.Element {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
   useEffect(() => {
     setIsLoggedIn(() => isUserLoggedIn());
   }, []);
