@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 export async function loginRequest({ username, password, route = 'login' }: { username: string, password: string, route: string }) {
     const data = await axios
-        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/${route}`, { username, password })
+        .post(`http://${process.env.NEXT_PUBLIC_API_URL}/api/auth/${route}`, { username, password })
         .then((res: any) => {
             return res.data;
         })

@@ -20,7 +20,9 @@ const page = () => {
       username: inputValue.username,
       password: inputValue.password,
       route: "login",
-    }).then(() => setIsLoggedIn(true))
+    })
+    .then(() => setIsLoggedIn(true))
+    .catch((err) => console.log(err))
   }
   useEffect(() => {
     setIsLoggedIn(() => isUserLoggedIn());
