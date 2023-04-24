@@ -3,12 +3,20 @@ import { toast } from "react-toastify";
 
 
 export async function loginRequest({ username, password, route = 'login' }: { username: string, password: string, route: string }) {
-    const data = await axios
-        .post(`http://${process.env.NEXT_PUBLIC_API_URL}/api/auth/${route}`, { username, password })
+    console.log(process.env.API_URL)
+    const data = await fetch(`${process.env.API_URL}/api/auth/${route}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        mode: "no-cors",
+        body: JSON.stringify({ username, password })
+    })
         .then((res: any) => {
-            return res.data;
+            console.log(res)
+            return res
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log('Error: ', error));
     if (data.token && data.user) {
         localStorage.setItem("token", data?.token);
         localStorage.setItem("user", JSON.stringify(data?.user));

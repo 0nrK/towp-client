@@ -4,11 +4,12 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["img.youtube.com", "img.ytimg.com" ],
+    domains: ["img.youtube.com", "img.ytimg.com"],
   },
   env: {
     API_URL: process.env.NEXT_PUBLIC_API_URL,
-  }
+    SOCKET_URL: process.env.NEXT_PUBLIC_SOCKET_URL,
+  },
 };
 
 module.exports = nextConfig;
