@@ -6,8 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <nav className="flex min-h-screen flex-col items-center justify-between ">
-      <div className="flex flex-row space-x-9 mt-20">
+    <main className="flex  min-h-screen flex-col items-center justify-between ">
+      <div className="flex flex-col justify-center items-center md:flex-row space-y-3 space-x-9 mt-20">
         <div className="">
           <Playlist />
         </div>
@@ -18,6 +18,6 @@ export default function Home() {
           <Chat />
         </div>
       </div>
-    </nav>
+    </main>
   );
 }
