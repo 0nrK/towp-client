@@ -25,6 +25,7 @@ const page = () => {
       password: inputValue.password,
       route: "register",
     }).then(() => setIsLoggedIn(true))
+    .catch((err) => console.log(err))
   }
 
   useEffect(() => {

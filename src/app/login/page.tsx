@@ -20,7 +20,8 @@ const page = () => {
       username: inputValue.username,
       password: inputValue.password,
       route: "login",
-    }).then((res) => console.log(res))
+    })
+      .then((res) => console.log(res))
       .then(() => setIsLoggedIn(true))
       .catch((err) => console.log(err));
   }

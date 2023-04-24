@@ -7,7 +7,6 @@ function Navbar(): JSX.Element {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(process.env.API_URL)
     setIsLoggedIn(() => isUserLoggedIn());
   }, []);
   return (

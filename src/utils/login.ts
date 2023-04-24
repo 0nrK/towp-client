@@ -1,4 +1,3 @@
-import axios from "axios";
 import { toast } from "react-toastify";
 
 
@@ -7,14 +6,13 @@ export async function loginRequest({ username, password, route = 'login' }: { us
     const data = await fetch(`${process.env.API_URL}/api/auth/${route}`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/json",
         },
-        mode: "no-cors",
         body: JSON.stringify({ username, password })
     })
-        .then((res: any) => {
-            console.log(res)
-            return res
+        .then(async (res: any) => {
+            const jsonized = await res.json()
+            return jsonized
         })
         .catch((error) => console.log('Error: ', error));
     if (data.token && data.user) {
