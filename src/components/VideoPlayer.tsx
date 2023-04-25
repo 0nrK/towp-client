@@ -6,22 +6,31 @@ import "react-toastify/dist/ReactToastify.css";
 
 const VideoPlayer = () => {
   const [videoID, setVideoID] = useState<string>("");
-  function onVideoEnds() {
-    socket.emit("VIDEO_END");
-    socket.on("CURRENT_VIDEO", (data: any) => {
-      if (data) {
-        setVideoID(data.videoId);
-      }
-    });
-  }
 
-  useEffect(() => {
+  function onVideoEnds() {
     socket.on("CURRENT_VIDEO", (data: any) => {
       if (data) {
         setVideoID(data?.videoId);
       }
     });
+  }
+  useEffect(() => {
+    socket.on("VIDEO_END", () => {
+      socket.on("CURRENT_VIDEO", (data: any) => {
+        console.log(data)
+        if (data) {
+          setVideoID(data.videoId);
+        }
+      });
+    });
+    socket.on("CURRENT_VIDEO", (data: any) => {
+      if (data) {
+        setVideoID(() => data?.videoId);
+      }
+    });
   }, []);
+
+  useEffect(() => {}, [videoID]);
 
   if (!videoID)
     return (
@@ -31,22 +40,24 @@ const VideoPlayer = () => {
     );
   return (
     <div className="">
-      <YouTube
-        className="ytplayer"
-        opts={{
-          width: "384px",
-          height: "384px",
-          borderRadius: "10px",
-          playerVars: {
-            autoplay: 1,
-            controls: 1,
-            disablekb: 1,
-          },
-        }}
-        onEnd={onVideoEnds}
-        onError={(err) => console.log("Error:", err)}
-        videoId={videoID}
-      />
+      {videoID && (
+        <YouTube
+          className="ytplayer"
+          opts={{
+            width: "500px",
+            height: "384px",
+            borderRadius: "10px",
+            playerVars: {
+              autoplay: 1,
+              controls: 0,
+              disablekb: 1,
+            },
+          }}
+          onEnd={onVideoEnds}
+          onError={(err) => console.log("Error:", err)}
+          videoId={videoID}
+        />
+      )}
     </div>
   );
 };
