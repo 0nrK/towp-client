@@ -41,10 +41,10 @@ const Playlist = () => {
     setInputValue("");
   }, [isModalOpen]);
   return (
-    <div className="bg-slate-800 scrollbar rounded-lg w-64 h-96  overflow-y-scroll">
+    <div className="bg-slate-800 w-full  h-36  px-5  scrollbar rounded-lg md:w-64 md:h-96  overflow-y-scroll">
       <div>
         <div className="flex flex-row py-2 px-3  justify-between items-center border-b-2">
-          <h1 className="p-3 text-center text-white text-xl font-bold">
+          <h1 className="p-3 text-center text-white text-sm md:text-xl font-bold">
             What is next?
           </h1>
           <div

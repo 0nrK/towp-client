@@ -6,7 +6,7 @@ import { socket } from "../../utils/socket";
 import { IMessage } from "../../types/message";
 
 const Chat = () => {
-  const [messages, setMessages] = useState<IMessage[]>();
+  const [messages, setMessages  ] = useState<IMessage[]>();
   const chatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Chat = () => {
   }, []);
 
   return (
-    <div className="w-96 relative rounded-lg  overflow-y-hidden  h-96  bg-slate-800">
+    <div className="w-full md:w-96 relative rounded-lg  overflow-y-hidden  h-96  bg-slate-800">
       <div
         ref={chatRef}
         className=" space-y-1 h-5/6  overflow-y-scroll mb-3 scroll-smooth"
