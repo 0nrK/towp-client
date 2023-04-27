@@ -83,8 +83,11 @@ const VideoPlayer = () => {
               autoplay: 1,
               controls: 0,
               disablekb: 1,
-              start: videoSecond ?? 0,
+              start: videoSecond ?? 1,
             },
+          }}
+          onReady={() => {
+            playerRef?.current?.internalPlayer?.playVideo();
           }}
           onPlay={() => {
             // setVideoTimerOn(true);
