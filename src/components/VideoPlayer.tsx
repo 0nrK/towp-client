@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 const VideoPlayer = () => {
   const [videoID, setVideoID] = useState<string>("");
   // const [videoTimerOn, setVideoTimerOn] = useState<boolean>(false);
-  const [videoSecond, setVideoSecond] = useState<number | null>(null);
+  const [videoSecond, setVideoSecond] = useState<number>(1);
   const playerRef = useRef<any>(null);
   function onVideoEnds() {
     socket.on("GET_VIDEO", (data: any) => {
@@ -74,7 +74,7 @@ const VideoPlayer = () => {
       {videoID && (
         <YouTube
           ref={playerRef}
-          className="ytplayer"
+          className="yt-player"
           opts={{
             width: "500px",
             height: "384px",
@@ -83,12 +83,11 @@ const VideoPlayer = () => {
               autoplay: 1,
               controls: 0,
               disablekb: 1,
-              start: videoSecond ?? 1,
+              start: videoSecond,
             },
           }}
           onReady={() => {
             playerRef?.current?.internalPlayer?.playVideo();
-            playerRef.current.internalPlayer.seekTo(videoSecond ?? 1);
           }}
           onPlay={() => {
             // setVideoTimerOn(true);
@@ -96,6 +95,7 @@ const VideoPlayer = () => {
           onEnd={onVideoEnds}
           onStateChange={(e) => {
             // setVideoSecond(0);
+            playerRef?.current?.internalPlayer?.playVideo();
           }}
           onError={(err) => console.log("Error:", err)}
           videoId={videoID}
