@@ -6,10 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const VideoPlayer = () => {
   const [videoID, setVideoID] = useState<string>("");
-  // const [videoSecond, setVideoSecond] = useState<number>(0);
   // const [videoTimerOn, setVideoTimerOn] = useState<boolean>(false);
   const [videoSecond, setVideoSecond] = useState<number | null>(null);
-  const [intervalId, setIntervalId] = useState<any>();
   const playerRef = useRef<any>(null);
   function onVideoEnds() {
     socket.on("GET_VIDEO", (data: any) => {
@@ -28,9 +26,11 @@ const VideoPlayer = () => {
       }
     });
     socket.on("GET_VIDEO", (data: any) => {
+      console.log("serverdata:", data);
       if (data) {
         setVideoID(() => data?.video?.videoId);
         setVideoSecond(() => data.videoTimer);
+        console.log("clientTimer:", videoSecond);
       }
     });
     /* const syncInterval = setInterval(async () => {
@@ -88,6 +88,7 @@ const VideoPlayer = () => {
           }}
           onReady={() => {
             playerRef?.current?.internalPlayer?.playVideo();
+            playerRef.current.internalPlayer.seekTo(videoSecond ?? 1);
           }}
           onPlay={() => {
             // setVideoTimerOn(true);
