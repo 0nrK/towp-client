@@ -33,16 +33,16 @@ const VideoPlayer = () => {
         setVideoSecond(() => data.videoTimer);
       }
     });
-    const syncInterval = setInterval(async () => {
+    /* const syncInterval = setInterval(async () => {
       const currentSecond = Math.round(
         await playerRef?.current?.internalPlayer?.getCurrentTime()
       );
       socket.emit("SYNK_VIDEO", currentSecond);
-    }, 5000);
+    }, 5000); 
 
     return () => {
       clearInterval(syncInterval);
-    };
+    }; */
   }, []);
 
   /* useEffect(() => {
