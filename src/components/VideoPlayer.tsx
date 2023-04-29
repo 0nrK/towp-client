@@ -20,17 +20,17 @@ const VideoPlayer = () => {
   }
 
   useEffect(() => {
-    socket.on("CURRENT_VIDEO", (data: any) => {
-      if (data) {
-        setVideoID(() => data.video?.videoId);
-      }
-    });
     socket.on("GET_VIDEO", (data: any) => {
       console.log("serverdata:", data);
       if (data) {
         setVideoID(() => data?.video?.videoId);
         setVideoSecond(() => data.videoTimer);
-        console.log("clientTimer:", videoSecond);
+      }
+    });
+    socket.on("CURRENT_VIDEO", (data: any) => {
+      console.log("serverdata:", data);
+      if (data) {
+        setVideoID(() => data?.video?.videoId);
       }
     });
     /* const syncInterval = setInterval(async () => {
@@ -87,7 +87,6 @@ const VideoPlayer = () => {
             },
           }}
           onReady={() => {
-            playerRef?.current?.internalPlayer?.playVideo();
           }}
           onPlay={() => {
             // setVideoTimerOn(true);
