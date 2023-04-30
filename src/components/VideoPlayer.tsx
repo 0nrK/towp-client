@@ -14,7 +14,7 @@ const VideoPlayer = () => {
       console.log(data);
       if (data) {
         setVideoID(() => data?.video?.videoId);
-        setVideoSecond(() => data.videoTimer);
+        setVideoSecond(0);
       }
     });
   }
@@ -87,6 +87,7 @@ const VideoPlayer = () => {
             },
           }}
           onReady={() => {
+            playerRef?.current?.internalPlayer?.playVideo();
           }}
           onPlay={() => {
             // setVideoTimerOn(true);
