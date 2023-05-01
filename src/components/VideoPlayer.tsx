@@ -10,29 +10,18 @@ const VideoPlayer = () => {
   const [videoSecond, setVideoSecond] = useState<number>(1);
   const playerRef = useRef<any>(null);
   function onVideoEnds() {
-    socket.on("GET_VIDEO", (data: any) => {
-      console.log(data);
-      if (data) {
-        setVideoID(() => data?.video?.videoId);
-        setVideoSecond(0);
-      }
-    });
+    setVideoID(() => "");
+    socket.emit("VIDEO_ENDS");
   }
 
   useEffect(() => {
     socket.on("GET_VIDEO", (data: any) => {
-      console.log("serverdata:", data);
       if (data) {
         setVideoID(() => data?.video?.videoId);
         setVideoSecond(() => data.videoTimer);
       }
     });
-    socket.on("CURRENT_VIDEO", (data: any) => {
-      console.log("serverdata:", data);
-      if (data) {
-        setVideoID(() => data?.video?.videoId);
-      }
-    });
+
     /* const syncInterval = setInterval(async () => {
       const currentSecond = Math.round(
         await playerRef?.current?.internalPlayer?.getCurrentTime()
@@ -92,8 +81,8 @@ const VideoPlayer = () => {
           onPlay={() => {
             // setVideoTimerOn(true);
           }}
-          onEnd={onVideoEnds}
-          onStateChange={(e) => {
+          onEnd={() => onVideoEnds()}
+          onStateChange={async (e) => {
             // setVideoSecond(0);
             playerRef?.current?.internalPlayer?.playVideo();
           }}
