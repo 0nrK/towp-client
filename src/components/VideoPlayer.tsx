@@ -11,7 +11,14 @@ const VideoPlayer = () => {
   const playerRef = useRef<any>(null);
   function onVideoEnds() {
     setVideoID(() => "");
+    setVideoSecond(() => 1);
     socket.emit("VIDEO_ENDS");
+    socket.on("GET_VIDEO", (data: any) => {
+      if (data) {
+        setVideoID(() => data?.video?.videoId);
+        setVideoSecond(() => data.videoTimer);
+      }
+    });
   }
 
   useEffect(() => {
