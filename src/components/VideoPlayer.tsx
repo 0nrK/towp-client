@@ -28,7 +28,12 @@ const VideoPlayer = () => {
         setVideoSecond(() => data.videoTimer);
       }
     });
-
+    socket.on("CURRENT_VIDEO", (data: any) => {
+      if (data) {
+        setVideoID(() => data?.video?.videoId);
+        setVideoSecond(() => data.videoTimer);
+      }
+    });
     /* const syncInterval = setInterval(async () => {
       const currentSecond = Math.round(
         await playerRef?.current?.internalPlayer?.getCurrentTime()
