@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { isUserLoggedIn, loginRequest } from "../../utils/login";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import Image from "next/image";
 
 interface IUserCredentials {
   username: string;
@@ -15,7 +16,6 @@ const page = () => {
     password: "",
     passwordConfirmation: "",
   });
-
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   async function login() {
@@ -24,8 +24,9 @@ const page = () => {
       username: inputValue.username,
       password: inputValue.password,
       route: "register",
-    }).then(() => setIsLoggedIn(true))
-    .catch((err) => console.log(err))
+    })
+      .then(() => setIsLoggedIn(true))
+      .catch((err) => console.log(err));
   }
 
   useEffect(() => {
@@ -35,7 +36,10 @@ const page = () => {
 
   return (
     <div className="flex flex-col  space-y-4 items-center  mx-auto rounded-md justify-center bg-gray-900 h-screen ">
-      <div className="bg-gray-700 w-72 space-y-8 rounded-md p-5">
+      <div className="bg-gray-700  w-72 space-y-8 rounded-md p-5">
+        <div className="flex justify-center mx-auto  items-center">
+          <Image src="/towp-logo.png" width={50} height={50} alt="ToWPLogo" />
+        </div>
         <div className="flex space-x-2 items-center  justify-between flex-row">
           <h1 className="text-white hover:text-yellow-400 font-bold ">
             <Link href="/login">Login</Link>
@@ -81,12 +85,11 @@ const page = () => {
             className="rounded-md cursor-pointer p-2 text-sm outline-none outline-0 focus:ring focus:ring-yellow-400"
             type="password"
           />
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              login();
-            }}
-            className="p-3 cursor-pointer bg-yellow-400 rounded-md text-white ml-auto"
+          <button onClick={(e) => {
+            e.preventDefault()
+            login();
+          }}
+            className={"p-3 cursor-pointer hover:text-black bg-yellow-400 rounded-md text-white ml-auto"}
           >
             SEND
           </button>
