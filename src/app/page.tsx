@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="flex overflow-x-hidden  min-h-screen flex-col items-center justify-between ">
       <div className="flex flex-col justify-center items-center md:flex-row space-y-3 space-x-9 mt-20">
-        <div className="">
+        <div className="w-96 md:w-64">
           <Playlist />
         </div>
         <div className="md:min-w-96  min-h-96 bg-gray-900">

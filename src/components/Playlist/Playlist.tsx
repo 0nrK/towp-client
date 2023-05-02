@@ -4,6 +4,7 @@ import PlaylistItem from "./PlaylistItem";
 import { socket } from "../../utils/socket";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import secondsToHms from "@/utils/moment";
 
 const Playlist = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -11,7 +12,11 @@ const Playlist = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [videoId, setVideoId] = useState<any>("");
   function onClick() {
-    socket.emit("ADD_TO_PLAYLIST", inputValue);
+    const token = localStorage.getItem('token')
+    socket.emit("ADD_TO_PLAYLIST", {
+      id: inputValue,
+      token
+    });
     toast.success("Video added to playlist", {
       position: toast.POSITION.BOTTOM_LEFT,
       theme: "dark",
@@ -34,7 +39,10 @@ const Playlist = () => {
   }, [inputValue]);
   useEffect(() => {
     socket.on("GET_PLAYLIST", (data: any) => {
-      setPlayList(data);
+      const formatedData = data.map((video: any) => {
+        return { ...video, duration: secondsToHms(video.duration) }
+      })
+      setPlayList(() => formatedData);
     });
   }, []);
   useEffect(() => {
@@ -60,6 +68,8 @@ const Playlist = () => {
             index={index}
             videoId={item.videoId}
             title={item.title}
+            createdBy={item.createdBy}
+            duration={item.duration}
           />
         ))}
         {isModalOpen && (
@@ -88,6 +98,12 @@ const Playlist = () => {
                     className="rounded-md cursor-pointer p-1 outline-none"
                     type="text"
                   />
+                  <button
+                    onClick={onClick}
+                    className="p-3 cursor-pointer bg-green-500 rounded-md text-white ml-auto"
+                  >
+                    SEND
+                  </button>
                   {videoId && (
                     <div className="min-w-48">
                       <Image
@@ -99,12 +115,6 @@ const Playlist = () => {
                       />
                     </div>
                   )}
-                  <button
-                    onClick={onClick}
-                    className="p-3 cursor-pointer bg-green-500 rounded-md text-white ml-auto"
-                  >
-                    SEND
-                  </button>
                 </div>
               </div>
             </div>
