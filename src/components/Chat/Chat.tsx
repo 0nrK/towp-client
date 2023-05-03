@@ -6,7 +6,7 @@ import { socket } from "../../utils/socket";
 import { IMessage } from "../../types/message";
 
 const Chat = () => {
-  const [messages, setMessages  ] = useState<IMessage[]>();
+  const [messages, setMessages] = useState<IMessage[]>();
   const chatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -16,6 +16,9 @@ const Chat = () => {
       }
       setMessages(data);
     });
+    socket.on('USER_BANNED', (data: any) => {
+      setMessages((prevMessages) => [...prevMessages as [], { user: 'System', message: data }])
+    })
   }, []);
 
   return (

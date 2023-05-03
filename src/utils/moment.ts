@@ -6,7 +6,7 @@ function secondsToHms(d: number) {
 
     let hDisplay = h > 0 ? h + (":") : "";
     let mDisplay = m > 0 ? m < 10 ? `${"0" + m + ':'}` : `${m + ':'}` : "";
-    let sDisplay = s > 0 ? s + ("") : "";
+    let sDisplay = s > 0 ? s < 10 ? `${"0" + s }` : `${s}` : "";
     return hDisplay + mDisplay + sDisplay;
 }
 

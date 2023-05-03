@@ -44,7 +44,7 @@ const page = () => {
           <h1 className="text-white hover:text-yellow-400 font-bold ">
             <Link href="/login">Login</Link>
           </h1>
-          <h1 className="text-white text-xl border-b-2 border-yellow-400 font-bold ">
+          <h1 className="text-yellow-400 text-xl border-b-2 border-yellow-400 font-bold ">
             Register
           </h1>
         </div>

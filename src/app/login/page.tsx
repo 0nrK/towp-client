@@ -38,7 +38,7 @@ const page = () => {
           <Image src="/towp-logo.png" width={50} height={50} alt="ToWPLogo" />
         </div>
         <div className="flex space-x-2 items-center  w-full justify-between flex-row">
-          <h1 className="text-white text-xl border-b-2 border-yellow-400 font-bold ">
+          <h1 className="text-yellow-400 text-xl border-b-2 border-yellow-400 font-bold ">
             Login
           </h1>
           <h1 className="text-white hover:text-yellow-400 font-bold ">

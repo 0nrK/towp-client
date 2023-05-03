@@ -17,13 +17,6 @@ const Playlist = () => {
       id: inputValue,
       token
     });
-    toast.success("Video added to playlist", {
-      position: toast.POSITION.BOTTOM_LEFT,
-      theme: "dark",
-      autoClose: 1000,
-      pauseOnFocusLoss: false,
-      hideProgressBar: false,
-    });
     setInputValue("");
     setIsModalOpen(false);
   }

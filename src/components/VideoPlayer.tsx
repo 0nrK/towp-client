@@ -74,7 +74,7 @@ const VideoPlayer = () => {
       {videoID && (
         <YouTube
           ref={playerRef}
-          className="yt-player"
+          className="yt-player select-none"
           opts={{
             width: "500px",
             height: "384px",
