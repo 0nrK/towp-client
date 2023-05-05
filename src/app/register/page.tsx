@@ -6,12 +6,14 @@ import { redirect } from "next/navigation";
 import Image from "next/image";
 
 interface IUserCredentials {
+  email: string;
   username: string;
   password: string;
   passwordConfirmation: string;
 }
 const page = () => {
   const [inputValue, setInputValue] = useState<IUserCredentials>({
+    email: "",
     username: "",
     password: "",
     passwordConfirmation: "",
@@ -21,6 +23,7 @@ const page = () => {
   async function login() {
     if (inputValue.password !== inputValue.passwordConfirmation) return;
     await loginRequest({
+      email: inputValue.email,
       username: inputValue.username,
       password: inputValue.password,
       route: "register",
@@ -49,6 +52,18 @@ const page = () => {
           </h1>
         </div>
         <form className="flex flex-col  space-y-4 mx-auto">
+          <input
+            onChange={(event) =>
+              setInputValue({
+                ...inputValue,
+                email: event.target.value,
+              })
+            }
+            placeholder="Enter your email"
+            value={inputValue.email}
+            className="rounded-md cursor-pointer p-2 text-sm outline-0 focus:ring focus:ring-yellow-400"
+            type="email"
+          />
           <input
             onChange={(event) =>
               setInputValue({

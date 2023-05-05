@@ -14,6 +14,7 @@ const Chat = () => {
       if (chatRef.current) {
         chatRef.current.scrollTop = chatRef.current.scrollHeight;
       }
+      console.log(data)
       setMessages(data);
     });
     socket.on('USER_BANNED', (data: any) => {
