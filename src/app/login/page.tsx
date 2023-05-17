@@ -80,7 +80,7 @@ const page = () => {
               login();
             }}
             disabled={isButtonDisabled}
-            className={`${isButtonDisabled && `bg-gray-400 cursor-progress`} p-3 w-full cursor-pointer hover:text-black bg-yellow-400 rounded-md text-white ml-auto`}
+            className={`${isButtonDisabled ? `bg-gray-400 cursor-progress` : `bg-yellow-400 cursor-pointer`} p-3 w-full  hover:text-black  rounded-md text-white ml-auto`}
           >
             SEND
           </button>
