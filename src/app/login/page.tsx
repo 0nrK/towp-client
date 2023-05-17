@@ -15,8 +15,10 @@ const page = () => {
     password: "",
   });
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
 
   async function login() {
+    setIsButtonDisabled(true)
     await loginRequest({
       username: inputValue.username,
       password: inputValue.password,
@@ -24,7 +26,8 @@ const page = () => {
     })
       .then((res) => console.log(res))
       .then(() => setIsLoggedIn(true))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsButtonDisabled(false))
   }
   useEffect(() => {
     setIsLoggedIn(() => isUserLoggedIn());
@@ -35,13 +38,13 @@ const page = () => {
     <div className="flex flex-col  space-y-4 items-center  mx-auto rounded-md justify-center bg-gray-900 h-screen ">
       <div className="bg-gray-700 w-72 space-y-8 rounded-md p-5">
         <div className="flex justify-center  items-center">
-          <Image src="/towp-logo.png" width={50} height={50} alt="ToWPLogo" />
+          <Image src="/towp-logo.png" width={100} height={100} alt="ToWPLogo" />
         </div>
         <div className="flex space-x-2 items-center  w-full justify-between flex-row">
-          <h1 className="text-yellow-400 text-xl border-b-2 border-yellow-400 font-bold ">
+          <h1 className="text-yellow-400 text-2xl border-b-2 border-yellow-400 font-bold ">
             Login
           </h1>
-          <h1 className="text-white hover:text-yellow-400 font-bold ">
+          <h1 className="text-white text-2xl hover:text-yellow-400 font-bold ">
             <Link href="/register">Register</Link>
           </h1>
         </div>
@@ -66,16 +69,18 @@ const page = () => {
               })
             }
             value={inputValue.password}
-            placeholder="Enter your password"
+            placeholder='Enter your password'
             className="rounded-md text-sm cursor-pointer p-2 outline-none outline-0 focus:ring focus:ring-yellow-400"
             type="password"
           />
+          <span className="font-bold ml-auto text-sm text-white hover:text-yellow-400 cursor-pointer">Forgot Password?</span>
           <button
             onClick={(event) => {
               event.preventDefault();
               login();
             }}
-            className="p-3 cursor-pointer hover:text-black bg-yellow-400 rounded-md text-white ml-auto"
+            disabled={isButtonDisabled}
+            className={`${isButtonDisabled && `bg-gray-400 cursor-progress`} p-3 w-full cursor-pointer hover:text-black bg-yellow-400 rounded-md text-white ml-auto`}
           >
             SEND
           </button>

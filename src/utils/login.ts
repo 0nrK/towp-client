@@ -23,7 +23,7 @@ export async function loginRequest({ email, username, password, route = 'login' 
             theme: "dark",
             autoClose: 1000,
             pauseOnFocusLoss: false,
-            hideProgressBar: false,
+            hideProgressBar: true,
         });
     } else {
         toast.warning("Login failed", {

@@ -19,9 +19,10 @@ const page = () => {
     passwordConfirmation: "",
   });
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
   async function login() {
     if (inputValue.password !== inputValue.passwordConfirmation) return;
+    setIsButtonDisabled(true)
     await loginRequest({
       email: inputValue.email,
       username: inputValue.username,
@@ -29,7 +30,8 @@ const page = () => {
       route: "register",
     })
       .then(() => setIsLoggedIn(true))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsButtonDisabled(false))
   }
 
   useEffect(() => {
@@ -39,15 +41,15 @@ const page = () => {
 
   return (
     <div className="flex flex-col  space-y-4 items-center  mx-auto rounded-md justify-center bg-gray-900 h-screen ">
-      <div className="bg-gray-700  w-72 space-y-8 rounded-md p-5">
+      <div className="bg-gray-700 my-auto w-72 space-y-8 rounded-md p-5">
         <div className="flex justify-center mx-auto  items-center">
-          <Image src="/towp-logo.png" width={50} height={50} alt="ToWPLogo" />
+          <Image src="/towp-logo.png" width={100} height={100} alt="ToWPLogo" />
         </div>
         <div className="flex space-x-2 items-center  justify-between flex-row">
-          <h1 className="text-white hover:text-yellow-400 font-bold ">
+          <h1 className="text-white text-2xl hover:text-yellow-400 font-bold ">
             <Link href="/login">Login</Link>
           </h1>
-          <h1 className="text-yellow-400 text-xl border-b-2 border-yellow-400 font-bold ">
+          <h1 className="text-yellow-400 text-2xl border-b-2 border-yellow-400 font-bold ">
             Register
           </h1>
         </div>
@@ -104,7 +106,8 @@ const page = () => {
             e.preventDefault()
             login();
           }}
-            className={"p-3 cursor-pointer hover:text-black bg-yellow-400 rounded-md text-white ml-auto"}
+            disabled={isButtonDisabled}
+            className={`${isButtonDisabled ? `bg-gray-400 cursor-progress` : `bg-yellow-400 cursor-pointer`} p-3 w-full  hover:text-black  rounded-md text-white ml-auto`}
           >
             SEND
           </button>

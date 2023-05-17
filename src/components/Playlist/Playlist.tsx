@@ -13,12 +13,28 @@ const Playlist = () => {
   const [videoId, setVideoId] = useState<any>("");
   function onClick() {
     const token = localStorage.getItem('token')
-    socket.emit("ADD_TO_PLAYLIST", {
-      id: inputValue,
-      token
-    });
-    setInputValue("");
-    setIsModalOpen(false);
+    if (!token) {
+      toast.error("You need to be logged in to add a video to the playlist", {
+        position: "bottom-left",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      })
+      setInputValue("");
+      setIsModalOpen(false);
+      return;
+    }else{
+      socket.emit("ADD_TO_PLAYLIST", {
+        id: inputValue,
+        token
+      });
+      setInputValue("");
+      setIsModalOpen(false);
+    }
   }
   // write a function that takes a youtube video link and returns video id
   function getVideoId(url: string) {
