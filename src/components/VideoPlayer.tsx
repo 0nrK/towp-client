@@ -13,6 +13,7 @@ const VideoPlayer = () => {
     setVideoID(() => "");
     setVideoSecond(() => 1);
     socket.emit("VIDEO_ENDS");
+    socket.emit('GET_PLAYLIST')
     socket.on("GET_VIDEO", (data: any) => {
       if (data) {
         setVideoID(() => data?.video?.videoId);
