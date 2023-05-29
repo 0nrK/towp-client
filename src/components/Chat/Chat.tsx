@@ -28,12 +28,12 @@ const Chat = () => {
     }
   }, [messages]);
 
-  if (!messages) return <p className="text-2xl text-white"> Loading...</p>
+  if (!messages) return <p className="text-2xl text-white">Loading...</p>
 
   return (
     <section className="w-full md:w-96  max-h-[24rem]">
       <div
-        className=" rounded-lg  overflow-y-scroll h-[20rem]  h-full scroll-smooth  bg-slate-800"
+        className="rounded-lg  overflow-y-scroll h-[20rem]  scroll-smooth  bg-slate-800"
         ref={chatRef}
       >
         {messages?.map((item, index) => {
