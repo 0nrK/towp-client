@@ -28,8 +28,6 @@ const Chat = () => {
     }
   }, [messages]);
 
-  if (!messages) return <p className="text-2xl text-white">Loading...</p>
-
   return (
     <section className="w-full md:w-96  max-h-[24rem]">
       <div

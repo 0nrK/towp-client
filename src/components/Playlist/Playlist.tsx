@@ -5,6 +5,7 @@ import { socket } from "../../utils/socket";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import secondsToHms from "@/utils/moment";
+import { getVideoId } from "@/utils/videoId";
 
 const Playlist = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -27,7 +28,10 @@ const Playlist = () => {
       setInputValue("");
       setIsModalOpen(false);
       return;
-    }else{
+    } else {
+      if (!inputValue) {
+        return;
+      }
       socket.emit("ADD_TO_PLAYLIST", {
         id: inputValue,
         token
@@ -36,13 +40,7 @@ const Playlist = () => {
       setIsModalOpen(false);
     }
   }
-  // write a function that takes a youtube video link and returns video id
-  function getVideoId(url: string) {
-    let regExp =
-      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-    let match = url.match(regExp);
-    return match && match[7].length == 11 ? match[7] : null;
-  }
+
   useEffect(() => {
     setVideoId(() => getVideoId(inputValue));
   }, [inputValue]);

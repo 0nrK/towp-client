@@ -64,15 +64,9 @@ const VideoPlayer = () => {
     socket.emit("SYNK_VIDEO", videoSecond);
   }, [videoSecond]); */
 
-  if (!videoID)
-    return (
-      <div className="w-[500px] h-96 flex items-center justify-center bg-gray-800 text-white">
-        NO VIDEO FOUND
-      </div>
-    );
   return (
-    <div className="">
-      {videoID && (
+    <div className="w-[500px] h-96 flex items-center justify-center bg-gray-800 text-white">
+      {videoID ? (
         <YouTube
           ref={playerRef}
           className="yt-player select-none"
@@ -101,7 +95,9 @@ const VideoPlayer = () => {
           onError={(err) => console.log("Error:", err)}
           videoId={videoID}
         />
-      )}
+      ) : <div className="w-[500px] h-96 flex items-center justify-center bg-gray-800 text-white">
+        NO VIDEO FOUND
+      </div>}
     </div>
   );
 };
