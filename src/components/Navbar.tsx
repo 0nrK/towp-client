@@ -1,25 +1,24 @@
 "use client";
-import { isUserLoggedIn, logoutRequest } from "../utils/login";
+import useAuthStore from "../store/index";
+import { logoutRequest } from "../utils/login";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 function Navbar(): JSX.Element {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  useEffect(() => {
-    setIsLoggedIn(() => isUserLoggedIn());
-  }, []);
+  const authStore = useAuthStore((state: any) => state)
+
   return (
     <>
       <nav className="flex flex-row select-none z-40 justify-between items-center shadow-lg bg-gray-800 text-white w-screen py-8 px-5">
         <h1 className="text-3xl hover:text-white cursor-pointer text-yellow-400 font-bold flex items-center justify-center">
           <Link href="/">ToWP</Link>
         </h1>
-        {isLoggedIn ? (
+        {authStore.loggedIn ? (
           <button
             className="px-3 py-2 flex flex-row bg-red-600 rounded-md hover:text-white text-black font-bold"
             onClick={() => {
-              setIsLoggedIn(false);
+              authStore.logout();
               logoutRequest();
             }}
           >

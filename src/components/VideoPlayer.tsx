@@ -8,15 +8,13 @@ const VideoPlayer = () => {
   const [videoID, setVideoID] = useState<string>("");
   // const [videoTimerOn, setVideoTimerOn] = useState<boolean>(false);
   const [videoSecond, setVideoSecond] = useState<number>(1);
-  const [windowHeight, setWindowHeight] = useState<number>(0);
-  const [windowWidth, setWindowWidth] = useState<number>(0);
 
   const playerRef = useRef<any>(null);
   function onVideoEnds() {
     setVideoID(() => "");
     setVideoSecond(() => 1);
     socket.emit("VIDEO_ENDS");
-    socket.emit('GET_PLAYLIST')
+    socket.emit('FETCH_PLAYLIST')
     socket.on("GET_VIDEO", (data: any) => {
       if (data) {
         setVideoID(() => data?.video?.videoId);
@@ -37,10 +35,6 @@ const VideoPlayer = () => {
         setVideoID(() => data?.video?.videoId);
       }
     });
-    setWindowHeight(() => window.innerHeight);
-    setWindowWidth(() => window.innerWidth);
-    console.log(window.innerHeight, window.innerWidth)
-    console.log(windowHeight, windowWidth);
     /* const syncInterval = setInterval(async () => {
       const currentSecond = Math.round(
         await playerRef?.current?.internalPlayer?.getCurrentTime()
@@ -101,7 +95,7 @@ const VideoPlayer = () => {
           onError={(err) => console.log("Error:", err)}
           videoId={videoID}
         />
-      ) : <div className="w-[800px] h-[800px] flex items-center justify-center bg-gray-800 text-white">
+      ) : <div className="w-[26rem] h-64 md:w-[44rem] md:h-[36rem]  lg:w-[48rem] lg:h-[44rem] flex items-center justify-center bg-gray-800 text-white">
         NO VIDEO FOUND
       </div>}
     </div>

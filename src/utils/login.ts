@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 
-
 export async function loginRequest({ email, username, password, route = 'login' }:
     { email?: string, username: string, password: string, route: string }) {
     const data = await fetch(`${process.env.API_URL}/api/auth/${route}`, {
@@ -46,11 +45,4 @@ export async function logoutRequest() {
         pauseOnFocusLoss: false,
         hideProgressBar: false,
     });
-}
-
-export function isUserLoggedIn(): boolean {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
-    if (token && user) return true
-    return false
 }

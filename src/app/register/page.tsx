@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { isUserLoggedIn, loginRequest } from "../../utils/login";
+import { loginRequest } from "../../utils/login";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import Image from "next/image";
+import useAuthStore from "../../store/index";
 
 interface IUserCredentials {
   email: string;
@@ -20,6 +20,9 @@ const page = () => {
   });
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
+
+  const authStore = useAuthStore((state: any) => state)
+
   async function login() {
     if (inputValue.password !== inputValue.passwordConfirmation) return;
     setIsButtonDisabled(true)
@@ -29,14 +32,15 @@ const page = () => {
       password: inputValue.password,
       route: "register",
     })
+      .then(() => authStore.login)
       .then(() => setIsLoggedIn(true))
       .catch((err) => console.log(err))
       .finally(() => setIsButtonDisabled(false))
   }
 
   useEffect(() => {
-    setIsLoggedIn(isUserLoggedIn());
-    if (isLoggedIn) return redirect("/");
+    setIsLoggedIn(() => authStore.isLoggedIn);
+    if (authStore.loggedIn) return redirect("/");
   }, [isLoggedIn]);
 
   return (
