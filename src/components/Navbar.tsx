@@ -11,7 +11,7 @@ function Navbar(): JSX.Element {
   }, []);
   return (
     <>
-      <nav className="flex flex-row select-none h-16 z-40 justify-between items-center shadow-lg bg-gray-800 text-white w-screen p-9">
+      <nav className="flex flex-row select-none z-40 justify-between items-center shadow-lg bg-gray-800 text-white w-screen py-8 px-5">
         <h1 className="text-3xl hover:text-white cursor-pointer text-yellow-400 font-bold flex items-center justify-center">
           <Link href="/">ToWP</Link>
         </h1>

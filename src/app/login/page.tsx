@@ -38,7 +38,7 @@ const page = () => {
     <div className="flex flex-col  space-y-4 items-center  mx-auto rounded-md  bg-gray-900 h-screen ">
       <div className="bg-gray-700 w-96 py-12 space-y-8 rounded-md px-5 mt-12">
         <div className="flex justify-center  items-center">
-          <Image src="/towp-logo.png" width={100} height={100} alt="ToWPLogo" />
+          <h1 className='text-yellow-400 select-none text-5xl font-bold'>TOWP</h1>
         </div>
         <div className="flex space-x-2 items-center  w-full my-auto justify-between flex-row">
           <h1 className="text-yellow-400 text-2xl border-b-2 border-yellow-400 font-bold ">
@@ -50,7 +50,7 @@ const page = () => {
         </div>
         <form className="flex flex-col text-white space-y-4 mx-auto">
           <div className="flex flex-col">
-            <label htmlFor='username'>Username:</label>
+            <label className="text-yellow-400 font-bold" htmlFor='username'>Username:</label>
             <input
               name="username"
               onChange={(event) =>
@@ -66,7 +66,7 @@ const page = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label>Password:</label>
+            <label className="text-yellow-400 font-bold">Password:</label>
             <input
               onChange={(event) =>
                 setInputValue({
@@ -79,7 +79,7 @@ const page = () => {
               className="rounded-md text-md text-black cursor-pointer p-2 outline-none outline-0 focus:ring focus:ring-yellow-400"
               type="password"
             />
-            <span className="font-bold ml-auto text-sm text-white hover:text-yellow-400 cursor-pointer">Forgot Password?</span>
+            <span className="font-bold ml-auto text-sm text-white mt-2 hover:text-yellow-400 cursor-pointer">Forgot Password?</span>
           </div>
           <button
             onClick={(event) => {

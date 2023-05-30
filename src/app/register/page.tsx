@@ -43,7 +43,7 @@ const page = () => {
     <div className="flex flex-col  space-y-4 items-center  mx-auto rounded-md  bg-gray-900 h-screen ">
       <div className="bg-gray-700 my-auto w-96 space-y-8 rounded-md mt-12 py-12 px-5">
         <div className="flex justify-center mx-auto  items-center">
-          <Image src="/towp-logo.png" width={100} height={100} alt="ToWPLogo" />
+          <h1 className='text-yellow-400 select-none text-5xl font-bold'>TOWP</h1>
         </div>
         <div className="flex space-x-2 items-center  justify-between flex-row">
           <h1 className="text-white text-2xl hover:text-yellow-400 font-bold ">
@@ -54,8 +54,8 @@ const page = () => {
           </h1>
         </div>
         <form className="flex flex-col  text-white space-y-4 mx-auto">
-        <div className="flex flex-col">
-            <label>Email:</label>
+          <div className="flex flex-col">
+            <label className="text-yellow-400 font-bold">Email:</label>
             <input
               onChange={(event) =>
                 setInputValue({
@@ -70,7 +70,7 @@ const page = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label>Username:</label>
+            <label className="text-yellow-400 font-bold">Username:</label>
             <input
               onChange={(event) =>
                 setInputValue({
@@ -85,7 +85,7 @@ const page = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label>Password:</label>
+            <label className="text-yellow-400 font-bold">Password:</label>
             <input
               onChange={(event) =>
                 setInputValue({
@@ -100,7 +100,7 @@ const page = () => {
             />
           </div>
           <div className="flex flex-col">
-            <label>Password confirmation:</label>
+            <label className="text-yellow-400 font-bold">Password confirmation:</label>
             <input
               onChange={(event) =>
                 setInputValue({

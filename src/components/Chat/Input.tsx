@@ -44,7 +44,7 @@ const Input = () => {
           </button>
         </div>
       ) : (
-        <p className="border-2 py-2 w-96 text-white text-xl flex items-center justify-center">
+        <p className="border-2 py-2 w-full text-white text-xl flex items-center justify-center">
           Login to chat
         </p>
       )}

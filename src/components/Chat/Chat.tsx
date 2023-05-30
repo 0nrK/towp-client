@@ -29,16 +29,18 @@ const Chat = () => {
   }, [messages]);
 
   return (
-    <section className="lg:w-[32rem] max-h-[52rem]">
+    <section className="w-full lg:w-[32rem] h-[42rem]">
       <div
-        className="rounded-lg overflow-x-hidden overflow-y-scroll h-[44rem] scroll-smooth  bg-slate-800"
+        className="rounded-lg overflow-x-hidden overflow-y-scroll h-full scroll-smooth  bg-slate-800"
         ref={chatRef}
       >
+        <div className="w-full">
         {messages?.map((item, index) => {
           return <Message key={index} message={item.message} user={item.user} />;
         })}
+        </div>
       </div>
-      <div className="w-full">
+      <div className="w-full mt-3">
         <Input />
       </div>
     </section>

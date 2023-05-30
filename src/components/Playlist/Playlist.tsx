@@ -56,8 +56,8 @@ const Playlist = () => {
     setInputValue("");
   }, [isModalOpen]);
   return (
-    <div className="bg-slate-800 w-full  min-h-36 h-auto px-5 scrollbar rounded-lg md:min-h-48 md:w-full lg:w-96 lg:h-[20rem]  overflow-y-scroll">
-      <div>
+    <div className="bg-slate-800 w-[28rem] mx-auto  min-h-36 h-auto px-5 scrollbar rounded-lg md:min-h-48 md:w-full lg:w-96 lg:h-[20rem]  overflow-y-scroll">
+      <div className="">
         <div className="flex flex-row py-2 px-3  justify-between items-center border-b-2">
           <h1 className="p-3 text-center text-white text-sm md:text-xl font-bold">
             What is next?
@@ -66,7 +66,7 @@ const Playlist = () => {
             onClick={() => setIsModalOpen(!isModalOpen)}
             className="rounded-md w-8 h-8 select-none  cursor-pointer hover:bg-white hover:bg-opacity-20 items-center  flex flex-row"
           >
-            <span className="text-green-500 font-bold text-2xl mx-auto">+</span>
+            <span className="text-yellow-500 font-bold text-2xl mx-auto">+</span>
           </div>
         </div>{" "}
         <div className="w-full">
@@ -109,7 +109,7 @@ const Playlist = () => {
                   />
                   <button
                     onClick={onClick}
-                    className="p-3 cursor-pointer bg-green-500 rounded-md text-white ml-auto"
+                    className="p-3 cursor-pointer bg-yellow-500 rounded-md font-bold hover:text-white ml-auto"
                   >
                     SEND
                   </button>
