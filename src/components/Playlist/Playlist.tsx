@@ -56,7 +56,7 @@ const Playlist = () => {
     setInputValue("");
   }, [isModalOpen]);
   return (
-    <div className="bg-slate-800 w-full  h-36  px-5  scrollbar rounded-lg md:w-64 md:h-96  overflow-y-scroll">
+    <div className="bg-slate-800 w-full  min-h-36 h-auto px-5 scrollbar rounded-lg md:min-h-48 md:w-full lg:w-96 lg:h-[20rem]  overflow-y-scroll">
       <div>
         <div className="flex flex-row py-2 px-3  justify-between items-center border-b-2">
           <h1 className="p-3 text-center text-white text-sm md:text-xl font-bold">
@@ -69,6 +69,7 @@ const Playlist = () => {
             <span className="text-green-500 font-bold text-2xl mx-auto">+</span>
           </div>
         </div>{" "}
+        <div className="w-full">
         {playList?.map((item, index) => (
           <PlaylistItem
             key={index}
@@ -78,15 +79,16 @@ const Playlist = () => {
             createdBy={item.createdBy}
             duration={item.duration}
           />
-        ))}
+          ))}
+          </div>
         {isModalOpen && (
           <>
             <div
               onClick={() => setIsModalOpen(false)}
-              className="bg-black left-0  top-0 absolute w-screen h-screen opacity-90 z-40"
+              className="bg-black left-0 overflow-y-hidden  top-0 absolute w-screen h-screen opacity-90 z-40"
             ></div>
             <div>
-              <div className="z-50 absolute left-0 right-0 top-0 bottom-0 mx-auto my-auto w-96 rounded-lg h-auto max-h-80 bg-gray-700">
+              <div className="z-50 absolute left-0 w-[30rem] px-5 right-0 top-0 bottom-0 mx-auto my-auto  rounded-lg  max-h-80 bg-gray-700">
                 <div
                   onClick={() => {
                     setIsModalOpen(false);
@@ -95,7 +97,7 @@ const Playlist = () => {
                 >
                   x
                 </div>
-                <div className="flex flex-col  space-y-3 w-5/6 h-96 mx-auto">
+                <div className="flex flex-col w-full h-full space-y-3 mx-auto">
                   <label className="text-white font-bold">
                     Enter a valid youtube link:
                   </label>

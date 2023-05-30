@@ -6,9 +6,9 @@ import { socket } from "../../utils/socket";
 import { IMessage } from "../../types/message";
 
 const Chat = () => {
+
   const [messages, setMessages] = useState<IMessage[]>();
   const chatRef = useRef<HTMLDivElement>(null);
-
 
   useEffect(() => {
     if (chatRef.current) {
@@ -29,16 +29,16 @@ const Chat = () => {
   }, [messages]);
 
   return (
-    <section className="w-full md:w-96  max-h-[24rem]">
+    <section className="lg:w-[32rem] max-h-[52rem]">
       <div
-        className="rounded-lg  overflow-y-scroll h-[20rem]  scroll-smooth  bg-slate-800"
+        className="rounded-lg overflow-x-hidden overflow-y-scroll h-[44rem] scroll-smooth  bg-slate-800"
         ref={chatRef}
       >
         {messages?.map((item, index) => {
           return <Message key={index} message={item.message} user={item.user} />;
         })}
       </div>
-      <div className="h-[4rem] mt-4">
+      <div className="w-full">
         <Input />
       </div>
     </section>

@@ -40,8 +40,8 @@ const page = () => {
   }, [isLoggedIn]);
 
   return (
-    <div className="flex flex-col  space-y-4 items-center  mx-auto rounded-md justify-center bg-gray-900 h-screen ">
-      <div className="bg-gray-700 my-auto w-72 space-y-8 rounded-md p-5">
+    <div className="flex flex-col  space-y-4 items-center  mx-auto rounded-md  bg-gray-900 h-screen ">
+      <div className="bg-gray-700 my-auto w-96 space-y-8 rounded-md mt-12 py-12 px-5">
         <div className="flex justify-center mx-auto  items-center">
           <Image src="/towp-logo.png" width={100} height={100} alt="ToWPLogo" />
         </div>
@@ -53,61 +53,73 @@ const page = () => {
             Register
           </h1>
         </div>
-        <form className="flex flex-col  space-y-4 mx-auto">
-          <input
-            onChange={(event) =>
-              setInputValue({
-                ...inputValue,
-                email: event.target.value,
-              })
-            }
-            placeholder="Enter your email"
-            value={inputValue.email}
-            className="rounded-md cursor-pointer p-2 text-sm outline-0 focus:ring focus:ring-yellow-400"
-            type="email"
-          />
-          <input
-            onChange={(event) =>
-              setInputValue({
-                ...inputValue,
-                username: event.target.value,
-              })
-            }
-            placeholder="Enter your username"
-            value={inputValue.username}
-            className="rounded-md cursor-pointer p-2 text-sm outline-0 focus:ring focus:ring-yellow-400"
-            type="text"
-          />
-          <input
-            onChange={(event) =>
-              setInputValue({
-                ...inputValue,
-                password: event.target.value,
-              })
-            }
-            placeholder="Enter your password"
-            value={inputValue.password}
-            className="rounded-md cursor-pointer p-2 text-sm outline-none outline-0 focus:ring focus:ring-yellow-400"
-            type="password"
-          />
-          <input
-            onChange={(event) =>
-              setInputValue({
-                ...inputValue,
-                passwordConfirmation: event.target.value,
-              })
-            }
-            value={inputValue.passwordConfirmation}
-            placeholder="Confirm your password"
-            className="rounded-md cursor-pointer p-2 text-sm outline-none outline-0 focus:ring focus:ring-yellow-400"
-            type="password"
-          />
+        <form className="flex flex-col  text-white space-y-4 mx-auto">
+        <div className="flex flex-col">
+            <label>Email:</label>
+            <input
+              onChange={(event) =>
+                setInputValue({
+                  ...inputValue,
+                  email: event.target.value,
+                })
+              }
+              placeholder="Enter your email"
+              value={inputValue.email}
+              className="rounded-md text-black cursor-pointer p-2 text-md outline-0 focus:ring focus:ring-yellow-400"
+              type="email"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label>Username:</label>
+            <input
+              onChange={(event) =>
+                setInputValue({
+                  ...inputValue,
+                  username: event.target.value,
+                })
+              }
+              placeholder="Enter your username"
+              value={inputValue.username}
+              className="rounded-md text-black cursor-pointer p-2 text-md outline-0 focus:ring focus:ring-yellow-400"
+              type="text"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label>Password:</label>
+            <input
+              onChange={(event) =>
+                setInputValue({
+                  ...inputValue,
+                  password: event.target.value,
+                })
+              }
+              placeholder="Enter your password"
+              value={inputValue.password}
+              className="rounded-md text-black cursor-pointer p-2 text-md outline-none outline-0 focus:ring focus:ring-yellow-400"
+              type="password"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label>Password confirmation:</label>
+            <input
+              onChange={(event) =>
+                setInputValue({
+                  ...inputValue,
+                  passwordConfirmation: event.target.value,
+                })
+              }
+              value={inputValue.passwordConfirmation}
+              placeholder="Confirm your password"
+              className="rounded-md text-black cursor-pointer p-2 text-md outline-none outline-0 focus:ring focus:ring-yellow-400"
+              type="password"
+            />
+          </div>
           <button onClick={(e) => {
             e.preventDefault()
             login();
           }}
             disabled={isButtonDisabled}
-            className={`${isButtonDisabled ? `bg-gray-400 cursor-progress` : `bg-yellow-400 cursor-pointer`} p-3 w-full  hover:text-black  rounded-md text-white ml-auto`}
+            className={`${isButtonDisabled ? `bg-gray-400 cursor-progress` : `bg-yellow-400 cursor-pointer`} p-3 w-full font-bold hover:text-white  rounded-md text-black ml-auto`}
           >
             SEND
           </button>

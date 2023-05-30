@@ -16,8 +16,8 @@ const PlaylistItem = ({
   duration: string;
 }) => {
   return (
-    <div className="cursor-pointer mt-3 rounded-md px-1 hover:bg-opacity-10 hover:bg-white">
-      <div className="flex flex-row px-2 space-x-3 py-3 truncate">
+    <div className="cursor-pointer mt-3 rounded-md px-1 w-full hover:bg-opacity-10 hover:bg-white">
+      <div className="flex flex-row  px-2 space-x-3 py-3 truncate">
         <Image
           width={50}
           height={50}
@@ -27,7 +27,7 @@ const PlaylistItem = ({
           placeholder="blur"
           className="text-center select-none  my-auto rounded-sm"
         />
-        <div className="space-y-1 w-32 select-none">
+        <div className="space-y-1 w-full select-none">
           <p className="text-sm text-white truncate my-auto">{title}</p>
           <div className="flex flex-row text-xs space-x-2  justify-between items-center">
             <span className="text-yellow-500 font-bold">{createdBy}</span>

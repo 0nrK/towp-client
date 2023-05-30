@@ -6,16 +6,18 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main className="flex overflow-x-hidden  min-h-screen flex-col items-center justify-between ">
-      <div className="flex flex-col justify-center items-center md:flex-row space-y-3 space-x-9 mt-20">
-        <div className="w-96 md:w-64">
+    <main className="flex overflow-x-hidden mt-5 w-full flex-col items-center justify-between">
+      <div className="flex flex-col lg:flex-row space-x-9">
+        <div className="w-full lg:w-68 ">
           <Playlist />
         </div>
-        <div className="md:min-w-96  min-h-96 bg-gray-900">
-          <VideoPlayer />
-        </div>
-        <div className="">
-          <Chat />
+        <div className="flex flex-col md:flex-row justify-center items-center  md:space-x-9">
+          <div className="bg-gray-900 md:min-w-96">
+            <VideoPlayer />
+          </div>
+          <div className="w-full ml-12">
+            <Chat />
+          </div>
         </div>
       </div>
     </main>

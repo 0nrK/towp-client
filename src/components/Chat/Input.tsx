@@ -20,7 +20,7 @@ const Input = () => {
     setToken(token!);
   }, []);
   return (
-    <div className=" w-full">
+    <div className="">
       {token ? (
         <div className="flex flex-row">
           <input
@@ -34,7 +34,7 @@ const Input = () => {
                 onClick();
               }
             }}
-            className="outline-none overflow-x-hidden scrollbar w-96 max-h-24   border-none bg-white  text-black p-2"
+            className="outline-none overflow-x-hidden scrollbar w-full h-14 text-xl   border-none bg-white  text-black p-2"
           ></input>
           <button
             onClick={onClick}

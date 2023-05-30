@@ -13,7 +13,7 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="overflow-x-hidden">
         <Navbar />
         <ToastProvider>{children}</ToastProvider>
       </body>

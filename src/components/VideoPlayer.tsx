@@ -65,14 +65,14 @@ const VideoPlayer = () => {
   }, [videoSecond]); */
 
   return (
-    <div className="w-[500px] h-96 flex items-center justify-center bg-gray-800 text-white">
+    <div className="w-full h-full flex items-center justify-center bg-gray-800 text-white">
       {videoID ? (
         <YouTube
           ref={playerRef}
           className="yt-player select-none"
           opts={{
-            width: "500px",
-            height: "384px",
+            width: '800px',
+            height: "800px",
             borderRadius: "10px",
             playerVars: {
               autoplay: 1,
@@ -95,7 +95,7 @@ const VideoPlayer = () => {
           onError={(err) => console.log("Error:", err)}
           videoId={videoID}
         />
-      ) : <div className="w-[500px] h-96 flex items-center justify-center bg-gray-800 text-white">
+      ) : <div className="w-[800px] h-[800px] flex items-center justify-center bg-gray-800 text-white">
         NO VIDEO FOUND
       </div>}
     </div>
