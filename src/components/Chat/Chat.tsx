@@ -29,9 +29,9 @@ const Chat = () => {
   }, [messages]);
 
   return (
-    <section className="w-full lg:w-[32rem] h-[42rem]">
+    <section className="w-[26rem] lg:w-[32rem] h-[42rem]">
       <div
-        className="rounded-lg overflow-x-hidden overflow-y-scroll h-full scroll-smooth  bg-slate-800"
+        className="rounded-lg w-full overflow-x-hidden overflow-y-scroll h-full scroll-smooth  bg-slate-800"
         ref={chatRef}
       >
         <div className="w-full">

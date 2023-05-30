@@ -8,6 +8,9 @@ const VideoPlayer = () => {
   const [videoID, setVideoID] = useState<string>("");
   // const [videoTimerOn, setVideoTimerOn] = useState<boolean>(false);
   const [videoSecond, setVideoSecond] = useState<number>(1);
+  const [windowHeight, setWindowHeight] = useState<number>(0);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+
   const playerRef = useRef<any>(null);
   function onVideoEnds() {
     setVideoID(() => "");
@@ -34,6 +37,10 @@ const VideoPlayer = () => {
         setVideoID(() => data?.video?.videoId);
       }
     });
+    setWindowHeight(() => window.innerHeight);
+    setWindowWidth(() => window.innerWidth);
+    console.log(window.innerHeight, window.innerWidth)
+    console.log(windowHeight, windowWidth);
     /* const syncInterval = setInterval(async () => {
       const currentSecond = Math.round(
         await playerRef?.current?.internalPlayer?.getCurrentTime()
@@ -69,10 +76,9 @@ const VideoPlayer = () => {
       {videoID ? (
         <YouTube
           ref={playerRef}
-          className="yt-player select-none"
+          className="yt-player w-[26rem] h-64 md:w-[44rem] md:h-[36rem]  lg:w-[48rem] lg:h-[44rem] select-none"
+          iframeClassName="w-full h-full"
           opts={{
-            width: '800px',
-            height: "800px",
             borderRadius: "10px",
             playerVars: {
               autoplay: 1,
